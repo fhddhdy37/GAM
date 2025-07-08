@@ -27,11 +27,49 @@
   <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-
-  <header>
-    <h1>G.A.M.</h1>
-    <p>Global AI Management</p>
-  </header>
+  <!-- 배너 섹션: 헤더를 배너 내부에 오버레이 -->
+  <section class="banner">
+    <header class="banner-header">
+      <h1>G.A.M.</h1>
+      <p>Global AI Management</p>
+    </header>
+    <div class="slideshow-container">
+      <div class="slide">
+        <img src="{% static 'home/img/team.jpg' %}" alt="성과 이미지 1">
+        <div class="slide-message">
+          <h2>2025 제 2회 화성시 도시데이터 공모전 수상!</h2>
+          <p>산업단지 특화 연구로 높은 기여도 인정</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="{% static 'home/img/team2.jpg' %}" alt="성과 이미지 2">
+        <div class="slide-message">
+          <h2>2025 제 2회 화성시 도시데이터 공모전 수상!</h2>
+          <p>산업단지 특화 연구로 높은 기여도 인정</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="{% static 'home/img/team3.jpg' %}" alt="성과 이미지 3">
+        <div class="slide-message">
+          <h2>제21대 대선후보 이준석의 지지!</h2>
+          <p>학식먹자 이준석!</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="{% static 'home/img/team4.jpg' %}" alt="성과 이미지 3">
+        <div class="slide-message">
+          <h2>제21대 대선후보 이준석의 지지!</h2>
+          <p>학식먹자 이준석!</p>
+        </div>
+      </div>
+    </div>
+    <div class="dots-container">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+  </section>
 
   <main>
     <section class="intro" style="text-align:center;">
@@ -77,63 +115,10 @@
     </section>
   </main>
 
-  <!-- 팝업 오버레이 -->
-  <div id="popup" style="
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;">
-    
-    <!-- 팝업 콘텐츠 -->
-    <div style="
-      position: relative;
-      width: 90%;
-      max-width: 700px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);">
-      
-      <!-- 단체사진 -->
-      <img src="{% static 'home/img/team.jpg' %}" alt="G.A.M 단체사진" style="width: 100%; display: block;" />
-
-      <!-- 텍스트 오버레이 -->
-      <div style="
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.4);
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: bold;">
-        🎉 2025 제 2회 화성시 도시데이터 공모전 챌린지상 수상! 🎉
-      </div>
-
-      <!-- 닫기 버튼 -->
-      <button onclick="document.getElementById('popup').style.display='none'" style="
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: rgba(255,255,255,0.8);
-        border: none;
-        border-radius: 50%;
-        width: 32px; height: 32px;
-        cursor: pointer;
-        font-weight: bold;">×</button>
-    </div>
-  </div>
-
-
   <footer>
     &copy; 2025 G.A.M. - Global AI Management
   </footer>
 
+  <script src="{% static 'home/js/banner.js' %}"></script>
 </body>
 </html>
