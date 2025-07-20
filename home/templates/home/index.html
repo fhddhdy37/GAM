@@ -80,32 +80,42 @@
     <section class="grid">
       <!-- 팀원 카드 -->
       <div class="card">
-        
-        <h3>강병찬</h3>
-        <p>G</p>
-        <p>디자이너</p>
+        <a href="{% url 'profile_page' 'kang' %}">
+          <img src="{% static 'home/img/profile/kang.png' %}" alt="강병찬 프로필 사진">
+          <h3>강병찬</h3>
+          <p>G</p>
+          <p>디자이너</p>
+        </a>
       </div>
       <div class="card">
-        
-        <h3>안병윤</h3>
-        <p>A</p>
-        <p>팀 리더</p>
+        <a href="{% url 'profile_page' 'ahn' %}">
+          <img src="{% static 'home/img/profile/ahn.jpg' %}" alt="안병윤 프로필 사진">
+          <h3>안병윤</h3>
+          <p>A</p>
+          <p>팀 리더</p>
+        </a>
       </div>
       <div class="card">
-        
-        <h3>민종석</h3>
-        <p>M</p>
-        <p>시스템 아키텍처</p>
+        <a href="{% url 'profile_page' 'min' %}">
+          <img src="{% static 'home/img/profile/min.jpg' %}" alt="민종석 프로필 사진">
+          <h3>민종석</h3>
+          <p>M</p>
+          <p>시스템 아키텍처</p>
+        </a>
       </div>
       <div class="card">
-        
-        <h3>김준권</h3>
-        <p>백엔드</p>
+        <a href="{% url 'profile_page' 'kim' %}">
+          <img src="{% static 'home/img/profile/kim.jpg' %}" alt="김준권 프로필 사진">
+          <h3>김준권</h3>
+          <p>백엔드</p>
+        </a>
       </div>
       <div class="card">
-        
-        <h3>이주석</h3>
-        <p>배포 관리</p>
+        <a href="{% url 'profile_page' 'lee' %}">
+          <img src="{% static 'home/img/profile/lee.jpg' %}" alt="이주석 프로필 사진">
+          <h3>이주석</h3>
+          <p>배포 관리</p>
+        </a>
       </div>
       <!-- 팀 모토 -->
       <div class="card" style="background: #dceeff;">
@@ -115,10 +125,19 @@
     </section>
   </main>
 
+    {% include "home/modal.html" %}
+
   <footer>
+    <address>
+      <strong>Contact Us</strong><br>
+      Tel: 010-9210-3086<br>
+      Email: <a href="mailto:anby0601@tukorea.ac.kr">anby0601@tukorea.ac.kr</a><br>
+      Address: 경기도 시흥시 산기대학로 237 TIP 생활관 1136호
+    </address>
     &copy; 2025 G.A.M. - Global AI Management
   </footer>
 
   <script src="{% static 'home/js/banner.js' %}"></script>
+  <script src="{% static 'home/js/modal.js' %}"></script>
 </body>
 </html>
