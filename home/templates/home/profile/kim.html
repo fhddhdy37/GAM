@@ -1,697 +1,233 @@
-<html>
-
+{% load static %}
+<!doctype html>
+<html lang="ko">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>김준권 포트폴리오 | AI &amp; Backend Student</title>
-    <style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-	margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(50, 48, 44, 1);
-}
-.highlight-gray {
-	color: rgba(115, 114, 110, 1);
-	fill: rgba(115, 114, 110, 1);
-}
-.highlight-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.highlight-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.highlight-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.highlight-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.highlight-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(205, 60, 58, 1);
-	fill: rgba(205, 60, 58, 1);
-}
-.highlight-default_background {
-	color: rgba(50, 48, 44, 1);
-}
-.highlight-gray_background {
-	background: rgba(248, 248, 247, 1);
-}
-.highlight-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.highlight-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.highlight-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.highlight-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.highlight-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.highlight-purple_background {
-	background: rgba(248, 243, 252, 1);
-}
-.highlight-pink_background {
-	background: rgba(252, 241, 246, 1);
-}
-.highlight-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(115, 114, 110, 1);
-	fill: rgba(115, 114, 110, 1);
-}
-.block-color-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.block-color-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.block-color-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.block-color-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.block-color-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(205, 60, 58, 1);
-	fill: rgba(205, 60, 58, 1);
-}
-.block-color-default_background {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray_background {
-	background: rgba(248, 248, 247, 1);
-}
-.block-color-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.block-color-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.block-color-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.block-color-purple_background {
-	background: rgba(248, 243, 252, 1);
-}
-.block-color-pink_background {
-	background: rgba(252, 241, 246, 1);
-}
-.block-color-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
-.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
-.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
-.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
-.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
-.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
-.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
-.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
-.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
-.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}        
-    </style>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'home/css/min.css' %}" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>김준권 포트폴리오 | AI & Backend Student</title>
+  <link rel="stylesheet" href="{% static 'home/css/kim.css' %}">
 </head>
-
 <body>
-    <article class="page sans"><header><h1 class="page-title">김준권 포트폴리오 | AI &amp; Backend Student</h1><p class="page-description"></p></header><div class="page-body"><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><div class="column-list"><div style="width:118.75%" class="column"><h1 class="">💫 김준권 | Kim Junkwon</h1><p class=""><em>"기술로 세상을 더 나은 곳으로 만들고자 합니다"</em></p><p class="">
-    </p></div><div style="width:22.426470588235297%" class="column"><figure class="image"><img style="width:96px" src="{% static 'home/img/profile/kim.jpg' %}"></figure></div></div></div></figure><div class="column-list"><div style="width:100%" class="column"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><h2 class="">📱 Contact</h2><ul class="bulleted-list"><li style="list-style-type:disc">📞 010-3754-4193</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">✉️ <a href="mailto:fhddhdy37@tukorea.ac.kr">fhddhdy37@tukorea.ac.kr</a></li></ul><ul class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/fhddhdy37" target="_blank">🏠 fhddhdy37</a></li></ul><ul class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.instagram.com/ct._.cd" target="_blank">📱@ct._.cd</a></li></ul></div></figure><p class="">
-    </p></div><div style="width:100%" class="column"><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><h2 class="">🎓 Education</h2><ul class="bulleted-list"><li style="list-style-type:disc">📚 전공: 소프트웨어전공</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">🤖 융합전공: 인공지능융합전공</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">📊 학년: 3학년 6학기</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">🎯 평점: <strong>4.17 / 4.5</strong></li></ul></div></figure></div></div><h1 class="block-color-teal">💻 Technical Skills</h1><div class="column-list"><div style="width:100%" class="column"><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><h3 class="">⌨️ Programming Languages</h3><ul class="bulleted-list"><li style="list-style-type:disc">✨ Python (중급)</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">✨ C (중급)</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">✨ Java (중급)</li></ul><ul class="bulleted-list"></ul></div></figure></div><div style="width:100%" class="column"><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><h3 class="">🔧 Frameworks &amp; Tools</h3><ul class="bulleted-list"><li style="list-style-type:disc">🎯 PyTorch</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">📱 Flutter</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">🌐 Django</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">🔥 Firebase</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">📊 MySQL</li></ul></div></figure></div><div style="width:100%" class="column"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><h3 class="">🛠️ Development Tools</h3><ul class="bulleted-list"><li style="list-style-type:disc">💻 VS Code</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">🐍 Android Studio</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">🌟 Git</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">📊 DataGrip</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">☕ Docker</li></ul></div></figure><p class="">
-    </p></div></div><h1 class="block-color-orange">🚀 Projects Highlight</h1><figure class="block-color-orange_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><h2 class="">🤖 입력한 채팅을 읽어주는 디스코드 봇</h2><p class=""><strong>🎯 목표:</strong> 현재 음성 채널에서 입력한 채팅을 TTS로 송출</p><p class=""><strong>🛠️ 사용 기술:</strong> python, ffmpeg, TTS</p><p class=""><strong>💫 주요 성과:</strong></p><ul class="bulleted-list"><li style="list-style-type:disc">🗣️ 최신 밈 적용</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">👥 다국어(한, 영, 일, 중) 지원</li></ul></div></figure><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><h2 class="">🗂️ 보고서 자동 생성 프로그램</h2><p class=""><strong>🎯 목표:</strong> gspread 라이브러리를 활용한 구글 스프레드 시트 보고서 자동 생성</p><p class=""><strong>🛠️ 사용 기술:</strong> python, Google Cloud Platform</p><p class=""><strong>💫 주요 성과:</strong></p><ul class="bulleted-list"><li style="list-style-type:disc">📡 API 관리</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">📊 러셀 부천 출석부 관리 자동화</li></ul></div></figure><figure class="block-color-orange_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><h2 class="">🍚 든든할인</h2><p class=""><strong>🎯 목표:</strong> 동네 지역의 식당 할인 정보 및 식당별 쿠폰 관리 기능 제공</p><p class=""><strong>🛠️ 사용 기술:</strong> kotlin, Firebase, Google Cloud Platform</p><p class=""><strong>💫 주요 성과:</strong></p><ul class="bulleted-list"><li style="list-style-type:disc">🪪 사업자 인증을 통한 신뢰도 확보</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">🗺️ 소상공인 지원을 통한 지역 경제 활성화</li></ul></div></figure><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><h2 class="">📓 AI 그림일기</h2><p class=""><strong>🎯 목표:</strong> 그날의 일기에 그림을 그려주는 나만의 그림일기 앱</p><p class=""><strong>🛠️ 사용 기술:</strong> Flutter, Django, AWS, GPT, Dall-E</p><p class=""><strong>💫 주요 성과:</strong></p><ul class="bulleted-list"><li style="list-style-type:disc">📅 달력 UI로 그날의 일기 확인 가능</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">🤖 작성한 일기를 바탕으로 키워드 추출</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">🎨 키워드를 바탕으로 그림 생성</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">✨ 스티커 수집 요소 제공</li></ul></div></figure><h1 class="block-color-purple">✨ Activities &amp; Experience</h1><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><table class="simple-table"><tbody><tr><td id="gxGz" class=""><strong>📅 기간</strong></td><td id="Mym~" class=""><strong>🏢 기관</strong></td><td id="BB=F" class="" style="width:291px"><strong>📝 활동 내용</strong></td></tr><tr><td id="gxGz" class="">`24.12 ~ 현재</td><td id="Mym~" class="">한국공학대학교</td><td id="BB=F" class="" style="width:291px">인공지능 및 데이터시스템 EH 학생연구원</td></tr><tr><td id="gxGz" class="">`25.05 ~ 현재</td><td id="Mym~" class="">GDGoC TUK</td><td id="BB=F" class="" style="width:291px">총무 오거나이저</td></tr><tr><td id="gxGz" class="">`24.09 ~ `25.05</td><td id="Mym~" class="">GDGoC TUK</td><td id="BB=F" class="" style="width:291px">프로젝트 진행 및 Spring Boot 스터디 참여</td></tr></tbody></table></div></figure><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><table class="simple-table"><tbody><tr><td id="gxGz" class=""><strong>📅 날짜</strong></td><td id="Mym~" class=""><strong>🏢 기관</strong></td><td id="BB=F" class="" style="width:291px"><strong>🏆 수상 내용</strong></td></tr><tr><td id="gxGz" class="">2025.06.18</td><td id="Mym~" class="">화성시연구원</td><td id="BB=F" class="" style="width:291px">제2회 화성시 대학(원)생 도시데이터 연구공모전 챌린지상</td></tr><tr><td id="gxGz" class="">2024.11.29</td><td id="Mym~" class="">한국공학대학교 메카트로닉스공학부</td><td id="BB=F" class="" style="width:291px">제5회 총장배 로봇 프로그래밍 경진대회 AI-Eye 부문 장려상</td></tr><tr><td id="gxGz" class="">2023.11.24</td><td id="Mym~" class="">한국공학대학교 메카트로닉스공학부</td><td id="BB=F" class="" style="width:291px">제4회 총장배 로봇 프로그래밍 경진대회 스크래치 부문 우수상</td></tr></tbody></table></div></figure><div class="column-list"><div style="width:100%" class="column"><figure class="block-color-orange_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><h2 class="">📜 Certificates</h2><ul class="bulleted-list"><li style="list-style-type:disc">🚗 운전면허증 1종보통</li></ul><ul class="bulleted-list"><li style="list-style-type:disc">💻 컴퓨터활용능력 2급</li></ul></div></figure></div><div style="width:100%" class="column"><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><h2 class="">🌏 Language Skills</h2><ul class="bulleted-list"><li style="list-style-type:disc">🇺🇸 TOEIC 540/990점 (2025.04)</li></ul></div></figure></div></div><h1 class="block-color-blue">🎯 Vision</h1><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex"><div style="width:100%"><h2 class="">나의 목표: 삶을 변화시키는 인공지능 개발자</h2><p class="">딥러닝, 강화학습, 자연어처리 분야의 전문성을 바탕으로 실제 사회 문제를 해결하고, 사람들의 삶의 질을 향상시키는 혁신적인 AI 솔루션을 개발하고자 합니다. 기술은 결국 사람을 위한 것이라는 믿음으로, 더 나은 미래를 만들어가는 개발자가 되겠습니다.</p></div></figure></div></article>
-    <span class="sans" style="font-size:14px;padding-top:2em"></span>
-</body>
+  <header class="site-header">
+    <div class="container header__grid">
+      <div class="header__left">
+        <h1 class="site-title">김준권 <span class="site-title__muted">| AI & Backend Student</span></h1>
+        <p class="site-tagline">"상상을 현실로 만드는 것이 공학의 진정한 의미이다."</p>
+      </div>
+      <div class="header__right">
+        <img src="{% static 'home/img/profile/kim.jpg' %}" alt="김준권 프로필 사진" class="avatar">
+      </div>
+    </div>
+  </header>
 
+  <main class="container">
+	<section id="profile">
+		<h2>🧑‍🎓 Profile</h2>
+		<section class="grid grid--2">
+			<section id="contact" class="card">
+			<h3>📱 Contact</h3>
+			<ul class="list list--icon">
+				<li>📞 <a href="tel:+821037544193">010-3754-4193</a></li>
+				<li>✉️ <a href="mailto:fhddhdy37@tukorea.ac.kr">fhddhdy37@tukorea.ac.kr</a></li>
+				<li>
+					<img class="icon" src="{% static 'home/img/icon/github.png' %}" alt="GitHub" />
+					<a href="https://github.com/fhddhdy37" target="_blank" rel="noopener">fhddhdy37</a>
+				</li>
+				<li>
+					<img class="icon" src="{% static 'home/img/icon/instagram.png' %}" alt="Instagram" />
+					<a href="https://www.instagram.com/ct._.cd" target="_blank" rel="noopener">@ct._.cd</a>
+				</li>
+			</ul>
+			</section>
+			<section id="education" class="card">
+			<h3>🎓 Education</h3>
+			<ul class="list list--icon">
+				<li>📚 전공: 소프트웨어전공</li>
+				<li>🤖 융합전공: 인공지능융합전공</li>
+				<li>📊 학년: 3학년 6학기</li>
+				<li>🎯 평점: <strong>4.17 / 4.5</strong></li>
+			</ul>
+			</section>
+		</section>
+		<section class="grid grid--2">
+			<article class="card">
+			  <h3>📜 Certificates</h3>
+			  <ul class="list list--dot">
+				<li>운전면허증 1종보통</li>
+				<li>컴퓨터활용능력 2급</li>
+			  </ul>
+			</article>
+			<article class="card">
+			  <h3>🌏 Language Skills</h3>
+			  <ul class="list list--dot">
+				<li>TOEIC 540/990 (2025.04)</li>
+			  </ul>
+			</article>
+		</section>
+		<section class="grid grid--3">
+		  <article class="card">
+			<h3>⌨️ Programming Languages</h3>
+			<ul class="list list--dot">
+			  <li>Python</li>
+			  <li>C</li>
+			  <li>Java</li>
+			</ul>
+		  </article>
+		  <article class="card">
+			<h3>🔧 Frameworks & Tools</h3>
+			<ul class="list list--dot">
+			  <li>PyTorch</li>
+			  <li>Flutter</li>
+			  <li>Django</li>
+			  <li>Firebase</li>
+			  <li>MySQL</li>
+			</ul>
+		  </article>
+		  <article class="card">
+			<h3>🛠️ Development Tools</h3>
+			<ul class="list list--dot">
+			  <li>VS Code</li>
+			  <li>Android Studio</li>
+			  <li>Git</li>
+			  <li>DataGrip</li>
+			  <li>Docker</li>
+			</ul>
+		  </article>
+		</section>
+		<section id="vision">
+			<h2>🎯 Vision</h2>
+			<article class="card">
+				<h3 class="u-mt0">상상을 현실로 만드는 것이 공학의 진정한 의미이다.</h3>
+				<p>
+					20년 후 미래를 상상해보는 것은 아주 옛날부터 공학의 발전에 기여해왔습니다. 
+					하늘을 날 수 있는 비행기는 당시에는 말도 안되는 상상일 뿐이었을 겁니다. 
+					하지만 라이트 형제는 그것을 현실로 만들어냈고, 21세기인 오늘날에는 더 많은 라이트 형제들이 세상을 발전시키고 있습니다. 
+					AI는 우리의 상상을 더 쉽게 현실로 만들어줄 것입니다. 항상 인간에 이로운 방향으로 상상하며, 새로운 혁신을 가져다주는 개발자가 되겠습니다.
+				</p>
+			</article>
+		</section>
+	</section>
+
+    <section id="projects">
+      <h2>🚀 Projects Highlight</h2>
+
+      <article class="project card">
+        <h2>🤖 입력한 채팅을 읽어주는 디스코드 봇</h2>
+		<hr>
+        <p><span class="label">🎯 목표</span> 현재 음성 채널에서 입력한 채팅을 TTS로 송출</p>
+        <p><span class="label">🛠️ 사용 기술</span> Python, FFmpeg, TTS</p>
+		<p><span class="label">💫 주요 성과</span>
+			<ul class="list list--dot">
+				<li>최신 밈 적용</li>
+				<li>다국어(한/영/일/중) 지원</li>
+			  </ul>
+		</p>
+      </article>
+
+      <article class="project card">
+        <h2>🗂️ 보고서 자동 생성 프로그램</h2>
+		<hr>
+        <p><span class="label">🎯 목표</span> gspread 라이브러리를 활용한 구글 스프레드시트 보고서 자동 생성</p>
+        <p><span class="label">🛠️ 사용 기술</span> Python, Google Cloud Platform</p>
+		<p><span class="label">💫 주요 성과</span>
+			<ul class="list list--dot">
+				<li>API 관리</li>
+				<li>러셀 부천 출석부 관리 자동화</li>
+			</ul>
+		</p>
+      </article>
+
+      <article class="project card">
+        <h2>🍚 든든할인</h2>
+		<hr>
+        <p><span class="label">🎯 목표</span> 동네 지역의 식당 할인 정보 및 식당별 쿠폰 관리 기능 제공</p>
+        <p><span class="label">🛠️ 사용 기술</span> Kotlin, Firebase, Google Cloud Platform</p>
+		<p><span class="label">💫 주요 성과</span>
+			<ul class="list list--dot">
+				<li>사업자 인증을 통한 신뢰도 확보</li>
+				<li>소상공인 지원을 통한 지역 경제 활성화</li>
+			</ul>
+		</p>
+      </article>
+
+      <article class="project card">
+        <h2>📓 AI 그림일기</h2>
+		<hr>
+        <p><span class="label">🎯 목표</span> 그날의 일기에 그림을 그려주는 나만의 그림일기 앱</p>
+        <p><span class="label">🛠️ 사용 기술</span> Flutter, Django, AWS, GPT, DALL·E</p>
+		<p><span class="label">💫 주요 성과</span>
+			<ul class="list list--dot">
+				<li>달력 UI로 그날의 일기 확인</li>
+				<li>작성한 일기를 바탕으로 키워드 추출</li>
+				<li>키워드를 바탕으로 그림 생성</li>
+				<li>스티커 수집 요소 제공</li>
+			</ul>
+		</p>
+      </article>
+    </section>
+
+    <section id="experience">
+	  <h2>✨ Activities & Experience</h2>
+	  <article class="card">
+		<div class="table">
+			<div class="table__row table__row--head">
+			  <div>📅 기간</div><div>🏢 기관</div><div>📝 활동 내용</div>
+			</div>
+			<div class="table__row">
+			  <div><time datetime="2024-12">`24.12</time> ~ 현재</div>
+			  <div>한국공학대학교</div>
+			  <div>인공지능 및 데이터시스템 EH 학생연구원</div>
+			</div>
+			<div class="table__row">
+			  <div><time datetime="2025-05">`25.05</time> ~ 현재</div>
+			  <div>GDGoC TUK</div>
+			  <div>총무 오거나이저</div>
+			</div>
+			<div class="table__row">
+			  <div>`24.09 ~ `25.05</div>
+			  <div>GDGoC TUK</div>
+			  <div>프로젝트 진행 및 Spring Boot 스터디 참여</div>
+			</div>
+			<div class="table__row">
+			  <div>`21.07 ~ `23.01</div>
+			  <div>대한민국 육군</div>
+			  <div>제 7포병여단 병장 만기 전역</div>
+			</div>
+		  </div>
+	  </article>
+    </section>
+
+    <section id="awards">
+	  <h2>🏆 Awards</h2>
+	  <article class="card">
+		<div class="table">
+			<div class="table__row table__row--head">
+				<div>📅 날짜</div><div>🏢 기관</div><div>🏆 수상 내용</div>
+			</div>
+			<div class="table__row">
+				<div><time datetime="2025-07-11">2025.07.11</time></div>
+				<div>한국컴퓨터정보학회</div>
+				<div>하계학술대회 우수논문상<br><small>(자율주행 시뮬레이션 시나리오의 OpenSCENARIO 기반 외란 주입 알고리즘 연구)</small></div>
+			</div>
+			<div class="table__row">
+				<div><time datetime="2025-06-18">2025.06.18</time></div>
+				<div>화성시연구원</div>
+				<div>제2회 화성시 대학(원)생 도시데이터 연구공모전 챌린지상</div>
+			</div>
+			<div class="table__row">
+				<div><time datetime="2024-11-29">2024.11.29</time></div>
+				<div>한국공학대학교 메카트로닉스공학부</div>
+				<div>제5회 총장배 로봇 프로그래밍 경진대회 AI-Eye 부문 장려상</div>
+			</div>
+			<div class="table__row">
+				<div><time datetime="2023-11-24">2023.11.24</time></div>
+				<div>한국공학대학교 메카트로닉스공학부</div>
+				<div>제4회 총장배 로봇 프로그래밍 경진대회 스크래치 부문 우수상</div>
+			</div>
+		</div>
+	  </article>
+    </section>
+  </main>
+
+</body>
 </html>
