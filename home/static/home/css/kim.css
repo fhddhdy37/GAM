@@ -1,0 +1,153 @@
+/* =========== Design Tokens =========== */
+:root{
+    --bg: #ffffff;
+    --text: #37352f;
+    --muted: #666666;
+    --border: #e8e6e3;
+  }
+  
+  *{ box-sizing: border-box; }
+  html, body{ margin:0; padding:0; }
+  body{
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+  }
+
+  a {
+    color: inherit;
+  }
+  
+  /* Layout */
+  .container{ width: min(960px, 92%); margin: 0 auto; }
+  .header__grid{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 2rem 0 1rem;
+  }
+  hr{
+    height: 1px;
+    border: 0px;
+    background: var(--border);
+  }
+  
+  /* Typography */
+  .site-title{ margin:0; font-weight:800; font-size: clamp(1.6rem, 1.2rem + 2vw, 2.25rem); }
+  .site-title__muted{ color: var(--muted); font-weight:600; }
+  .site-tagline{ margin:.25rem 0 0; color: var(--muted); }
+  h2{ font-size: 1.75rem; margin: 3rem 0 .75rem; }
+  h3{ font-size: 1.2rem; margin: 0 0 .5rem; }
+  
+  #profile h2{ margin-top: 0;}
+
+  #projects .project h2{
+    font-size: clamp(1.25rem, 1.5rem, 1.75rem);
+    line-height: 1.25;
+    font-weight: 800;
+    margin-top: .5rem;
+  }
+
+  #projects .project .list--dot{
+    margin-left: 1rem;   /* 리스트 전체(점 포함) 이동 */
+    padding-left: 1rem;  /* 점과 텍스트 간 여백 */
+  }
+  #projects .project .list--dot li{
+    margin-left: 2rem;      /* 기존 전역 규칙 덮어쓰기: 중복 들여쓰기 방지 */
+  }
+  
+  /* Projects 섹션: 라벨과 문단 간격 정돈 */
+  #projects .project p{ margin: .35rem 0;}
+  #projects .project .label{ display: inline-block; font-weight: 700; margin-right: .5rem; }
+  
+  /* Media */
+  .avatar{ width: 96px; height: 96px; border-radius: 12px; object-fit: cover; }
+  
+  /* Cards & Sections */
+  .card{
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem 1rem 1.75rem;
+    margin: 1rem 0;
+  }
+  .card{
+    padding: 1rem 1.25rem;
+  }
+  .card > p,
+  .card > ul,
+  .card > ol,
+  .card > div,
+  .card > article,
+  .card > section{
+    padding-left: 1rem;  /* 필요 시 .75rem 등으로 조절 */
+  }
+  
+  /* 표(Grid 테이블)는 들여쓰기 제외 */
+  .card > .table{
+    padding-left: 0;
+  }
+
+  #vision > article > p{
+    padding: 0;
+  }
+
+  .grid{ display: grid; gap: 1rem; }
+  .grid--3{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .grid--2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  
+  /* Lists */
+  .list{ margin: .25rem 0 0; padding-left: 1rem; }
+  .list--dot li{ list-style: disc; margin-left: 1rem; }
+  .list--icon{ list-style: none; padding: 0; }
+  .list--icon li{ margin: .25rem 0; }
+  
+  .list--icon { list-style: none; padding: 0; margin: .25rem 0 0; }
+  .list--icon li {
+    display: flex;              /* 아이콘 + 텍스트 가로 정렬 */
+    align-items: center;        /* 수직 중앙 정렬 */
+    gap: .5rem;                 /* 아이콘과 텍스트 간격 */
+    margin: .25rem 0;
+    }
+
+    /* 작은 사이즈 아이콘 */
+  .icon {
+    width: 18px;                /* 필요 시 16~20px로 조정 */
+    height: 18px;
+    display: inline-block;
+    flex: 0 0 18px;             /* 줄바꿈/늘어남 방지 */
+    object-fit: contain;        /* 비율 유지 */
+    }
+  
+  /* Projects */
+  .label{ font-weight: 700; margin-right: .5rem; }
+  
+  /* Tables made with CSS Grid for easy editing */
+  .table{ display: grid; grid-template-columns: 140px 180px 1fr; }
+  .table__row{ display: contents; }
+  .table__row > div{
+    padding: .6rem .8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .table__row--head > div{
+    font-weight: 700;
+    color: var(--muted);
+    border-bottom-width: 2px;
+  }
+  
+  /* Footer */
+  .site-footer{ padding: 2rem 0; color: var(--muted); }
+  .site-footer__inner{ font-size: .9rem; }
+  
+  /* Utilities */
+  .u-mt0{ margin-top: 0 !important; }
+  
+  /* Responsive */
+  @media (max-width: 800px){
+    .grid--3, .grid--2{ grid-template-columns: 1fr; }
+    .table{ grid-template-columns: 120px 1fr; }
+    .table__row > div:nth-child(3){ grid-column: 1 / -1; }
+  }
+  
