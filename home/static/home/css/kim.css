@@ -63,7 +63,7 @@
   #projects .project .label{ display: inline-block; font-weight: 700; margin-right: .5rem; }
   
   /* Media */
-  .avatar{ width: 96px; height: 96px; border-radius: 12px; object-fit: cover; }
+  .avatar{ width: 96px; border-radius: 12px; object-fit: cover; }
   
   /* Cards & Sections */
   .card{
