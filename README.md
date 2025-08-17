@@ -1,7 +1,7 @@
 # G.A.M.
 Global AI Management
 
-[our website](http://gamproject.iptime.org/)
+[our website](http://gamdasal.iptime.org/)
 
 ---
 * G : 강병찬 [github](https://github.com/bychan783)
