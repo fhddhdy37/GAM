@@ -1,3 +1,3 @@
-cd ~/homepage
+cd ~/GAM
 git fetch
 git pull
