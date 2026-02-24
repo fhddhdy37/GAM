@@ -1,0 +1,162 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Gambox - 사내 클라우드 스토리지</title>
+    <link rel="stylesheet" href="{% static 'gambox/css/dashboard.css' %}">
+</head>
+<body>
+    <header class="gambox-header">
+        <div>
+            <h1>GAMbox</h1>
+            <p>팀 전용 안전한 파일 허브. 로그인만 하면 어디서든 바로 액세스할 수 있습니다.</p>
+        </div>
+        <div class="header-actions">
+            <span class="welcome">{{ request.user.get_full_name|default:request.user.username }} 님</span>
+            <a class="header-btn" href="{% url 'index' %}">팀 소개로 이동</a>
+            <a class="header-btn" href="{% url 'logout' %}">로그아웃</a>
+        </div>
+    </header>
+
+    <main class="gambox-container">
+        {% if messages %}
+            <ul class="gambox-messages">
+                {% for message in messages %}
+                    <li class="message {{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <section class="status-grid">
+            <div class="usage-card">
+                <h2>저장소 현황</h2>
+                <p class="usage-main">
+                    {{ usage.bytes|filesizeformat }} / {{ usage.quota_gb }}GB
+                </p>
+                <div class="progress">
+                    <span style="width: {{ usage.percent }}%"></span>
+                </div>
+                <p class="usage-meta">
+                    {{ usage.percent }}% 사용 · 전체 파일 {{ usage.file_count }}개
+                </p>
+                <p class="usage-note">
+                    단일 파일 업로드 제한: {{ max_file_size_gb }}GB
+                </p>
+            </div>
+
+            <div class="upload-card">
+                <h2>파일 업로드</h2>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if current_folder %}
+                        <input type="hidden" name="folder" value="{{ current_folder.id }}">
+                    {% endif %}
+                    <label class="file-field">
+                        <span>파일 선택</span>
+                        {{ form.file }}
+                    </label>
+                    {{ form.note }}
+                    {% if not current_folder %}
+                        <label class="folder-select">
+                            <span>저장 위치</span>
+                            {{ form.folder }}
+                        </label>
+                    {% endif %}
+                    {% if form.non_field_errors %}
+                        <p class="error">{{ form.non_field_errors }}</p>
+                    {% endif %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                    <button type="submit">업로드</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="folders-card">
+            <div class="folders-header">
+                <div>
+                    <h2>폴더</h2>
+                    <div class="breadcrumbs">
+                        <a href="{% url 'gambox:dashboard' %}">내 저장소</a>
+                        {% for crumb in breadcrumbs %}
+                            <span>/</span>
+                            <a href="{% url 'gambox:dashboard' %}?folder={{ crumb.id }}">{{ crumb.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <form class="folder-form" method="post" action="{% url 'gambox:folder-create' %}">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="새 폴더 이름" required>
+                    {% if current_folder %}
+                        <input type="hidden" name="parent" value="{{ current_folder.id }}">
+                    {% endif %}
+                    <button type="submit">폴더 생성</button>
+                </form>
+            </div>
+            <ul class="folder-list">
+                {% if current_folder %}
+                    <li>
+                        <a href="{% url 'gambox:dashboard' %}{% if current_folder.parent %}?folder={{ current_folder.parent.id }}{% endif %}">상위 폴더로 이동</a>
+                    </li>
+                {% endif %}
+                {% for folder in folders %}
+                    <li>
+                        <a href="{% url 'gambox:dashboard' %}?folder={{ folder.id }}">&#128193; {{ folder.name }}</a>
+                    </li>
+                {% empty %}
+                    <li class="empty">하위 폴더가 없습니다.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section class="files-card">
+            <div class="files-header">
+                <h2>파일</h2>
+                <span>
+                    {% if current_folder %}
+                        {{ current_folder.full_path }}
+                    {% else %}
+                        루트 폴더
+                    {% endif %}
+                </span>
+            </div>
+            {% if files %}
+                <div class="table">
+                    <div class="table-row table-head">
+                        <span>파일명</span>
+                        <span>메모</span>
+                        <span>크기</span>
+                        <span>업로드일</span>
+                        <span class="actions-col">작업</span>
+                    </div>
+                    {% for item in files %}
+                        <div class="table-row">
+                            <span class="filename">{{ item.filename }}</span>
+                            <span class="note">{{ item.note|default:"-" }}</span>
+                            <span>{{ item.size|filesizeformat }}</span>
+                            <span>{{ item.uploaded_at|date:"Y-m-d H:i" }}</span>
+                            <span class="actions-col">
+                                <a class="ghost-btn" href="{% url 'gambox:download' item.pk %}">다운로드</a>
+                                <form method="post" action="{% url 'gambox:delete' item.pk %}" onsubmit="return confirm('삭제할까요?');">
+                                    {% csrf_token %}
+                                    {% if current_folder %}
+                                        <input type="hidden" name="current_folder" value="{{ current_folder.id }}">
+                                    {% endif %}
+                                    <button type="submit" class="danger-link">삭제</button>
+                                </form>
+                            </span>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="empty">이 폴더에는 파일이 없습니다. 새로 업로드해 보세요.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

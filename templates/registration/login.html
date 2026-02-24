@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Gambox 로그인</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1d3ede, #3f8cff);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1c2434;
+        }
+        .login-card {
+            width: min(420px, 90vw);
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(11, 29, 74, 0.25);
+        }
+        h1 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+        p.subtitle {
+            color: #5c6c88;
+            margin-top: 0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #364152;
+        }
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid #cfd6e6;
+            font-size: 1rem;
+        }
+        button {
+            border: none;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            background: linear-gradient(130deg, #1d3ede, #3f8cff);
+            color: #fff;
+            cursor: pointer;
+        }
+        .errorlist {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            color: #d92d2d;
+            font-size: 0.9rem;
+        }
+        .support {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #7a879b;
+        }
+        .auth-links {
+            margin-top: 16px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .auth-links a {
+            color: #1d3ede;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <section class="login-card">
+        <h1>사내 로그인</h1>
+        <p class="subtitle">Gambox와 팀 전용 도구에 접근하려면 계정 정보를 입력하세요.</p>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <ul class="errorlist">
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <div>
+                <label for="{{ form.username.id_for_label }}">아이디</label>
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <p class="errorlist">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div>
+                <label for="{{ form.password.id_for_label }}">비밀번호</label>
+                {{ form.password }}
+                {% for error in form.password.errors %}
+                    <p class="errorlist">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <button type="submit">로그인</button>
+            {% if next %}
+                <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
+        </form>
+        <div class="auth-links">
+            아직 계정이 없다면 <a href="{% url 'signup' %}">회원가입</a>을 진행하세요.
+        </div>
+        <p class="support">비밀번호를 잊었다면 관리자에게 문의해주세요.</p>
+    </section>
+</body>
+</html>
