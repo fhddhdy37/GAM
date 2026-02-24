@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
     "home",
+    "gambox",
 ]
 
 MIDDLEWARE = [
@@ -118,10 +120,20 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'home' / 'static',  # 혹은 전체 공통 'static' 폴더
+    BASE_DIR / "home" / "static",
 ]
+
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR.parent / "GAMbox"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "gambox:dashboard"
+LOGOUT_REDIRECT_URL = "index"
+
+GAMBOX_MAX_FILE_SIZE_GB = 50  # 단일 파일 제한 (GB)
+GAMBOX_STORAGE_QUOTA_GB = 50  # 사용자별 총 용량 (GB)
