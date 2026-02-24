@@ -105,9 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = "UTC"
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -123,8 +123,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "home" / "static",
 ]
 
-MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR.parent / "GAMbox"
+GAMBOX_ROOT = BASE_DIR.parent / "GAMbox"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -137,3 +136,15 @@ LOGOUT_REDIRECT_URL = "index"
 
 GAMBOX_MAX_FILE_SIZE_GB = 50  # 단일 파일 제한 (GB)
 GAMBOX_STORAGE_QUOTA_GB = 50  # 사용자별 총 용량 (GB)
+
+# static deploy settings
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
+
+SECURE_PROXY_SSL_HEADER = None  # HTTPS 안 쓰므로

@@ -23,11 +23,11 @@ def _owner_dir_name(owner):
 
 
 def _owner_storage_root(owner):
-    return Path(settings.MEDIA_ROOT) / _owner_dir_name(owner)
+    return Path(settings.GAMBOX_ROOT) / _owner_dir_name(owner)
 
 
 def user_upload_path(instance, filename):
-    """Store files under <username>/<folder...>/<uuid>_<filename> relative to MEDIA_ROOT."""
+    """Store files under <username>/<folder...>/<uuid>_<filename> relative to GAMBOX_ROOT."""
     safe_name = Path(filename).name
     path_parts = [_owner_dir_name(instance.owner)]
     if instance.folder:
